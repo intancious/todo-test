@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kategori;
 use App\Models\Produk;
 use CreateProduksTable;
 use Illuminate\Http\Request;
@@ -73,6 +74,13 @@ class ProdukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    function kategoris()
+    {
+        $data = Kategori::all();
+        return response()->json($data);
+    }
+
     public function show($id)
     {
         //
@@ -86,7 +94,8 @@ class ProdukController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Produk::find($id);
+        return response()->json($data);
     }
 
     /**
@@ -137,6 +146,18 @@ class ProdukController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $produk = Produk::find($id);
+            $produk->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Success'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Err',
+                'errors' => $e->getMessage()
+            ]);
+        }
     }
 }

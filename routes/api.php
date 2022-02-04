@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\ProdukController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,5 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::resource('produk', ProdukController::class);
-Route::post('/produk/{id}', [ProdukController::class, 'update']);
+Route::post('login', [AuthController::class, 'login']);
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::resource('produk', ProdukController::class);
+    Route::post('/produk/{id}', [ProdukController::class, 'update']);
+    Route::get('/kategori', [ProdukController::class, 'kategoris']);
+});
