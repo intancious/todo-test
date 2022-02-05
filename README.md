@@ -1,66 +1,61 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Tutorial Menjalankan Projek
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Spesifikasi :
+1.	Laravel 8
+2.	PHP 7.4
 
-## About Laravel
+Tools yang dibutuhkan :
+1.	Laragon (phpMyadmin dan webserver)
+2.	Text Editor Vscode
+3.	Postman
+Langkah Menjalankan Aplikasi :
+1.	Clone project dari repository
+2.	Buke folder project di vscode, duplicate file .env.example. kemudian rename menjadi .env.
+Pada file .env lakukan perubahan nama database dengan nama seleksi
+3.	Buat Database dengan nama seleksi
+4.	Buka terminal dan jalankan php artisan key:generate untuk mengenerate app key baru
+5.	Jalankan php artisan migrate (apabila pada database masih kosong) dan php artisan migrate:fresh (apabila database sudah terisi)
+6.	Jalankan php artisan serve
+7.	Buka browser dan jalankan ip/url yang dihasilkan oleh laravel local development :
+http://127.0.0.1:8000
+8.	Lakukan register menggunakan email dan password
+9.	Buka postman
+10.	Jalankan http request sesuai url dan method yang didaftarkan pada routes api.php
+a.	 Lakukan Login/Autentifikasi dengan cara login sesuai email dan password yang telah diregister tadi pada postman.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Setelah sukses login maka akan tampil :
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Setelah itu salin token tersebut dan masukkan pada Authorization setiap request baru pada HTTP Request :
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Pastikan Typenya Bearer Token
 
-## Learning Laravel
+ 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+b.	List Data Produk
 
-## Laravel Sponsors
+Isikan port local development serve yang didapat dari menjalankan php artisan serve/folder_controller/routes
+Untuk menampilkan list data produk menggunakan method GET
+ 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+c.	Insert Data Produk
 
-### Premium Partners
+Untuk insert data, diperlukan membuat body dan form data sesuai inputan database. Insert data menggunakan method POST. Jika input data sukses maka akan tampil seperti dibawah ini :
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+ 
 
-## Contributing
+d.	Edit Data Produk
+Untuk edit data disini diperlukan tambahan pada http url yaitu http://127.0.0.1:8000/api/produk/id_datanya yang akan diedit
+Disini edit menggunakan method POST.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Untuk update data, diperlukan membuat body dan form data sesuai inputan database. update data menggunakan method POST. Jika update data sukses maka akan tampil seperti dibawah ini :
 
-## Code of Conduct
+Pada CRUD diatas selalu pastikan pada database, cek pada phpMyadmin
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+pada Id data 3 data sudah terupdate, dan ada penambahan data baru di id data 5.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+e.	Delete Data Produk
+Untuk delete link http request sama seperti pada edit/update harus memilih id yang akan dihapus, namun method yang digunakan yaitu DELETE. Diatas terlihat sukses delete, setelah dicek pada database di phpMyadmin yaitu :
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+data dengan id 3 sudah berhasil terhapus.
