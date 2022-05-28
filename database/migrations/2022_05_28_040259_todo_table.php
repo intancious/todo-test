@@ -4,18 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKategorisTable extends Migration
+class TodoTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        Schema::create('kategoris', function (Blueprint $table) {
-            $table->Increments('id_kategori');
-            $table->string('nama_kategori');
+        Schema::create('todo', function (Blueprint $table) {
+            $table->Increments('id_todo');
+            $table->string('nama_todo');
+            $table->enum('status', ['menunggu', 'sudah', 'belum']);
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ class CreateKategorisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kategoris');
+        Schema::dropIfExists('todo');
     }
 }

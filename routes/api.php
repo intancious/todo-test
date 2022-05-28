@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\ProdukController;
+use App\Http\Controllers\API\TodoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::resource('produk', ProdukController::class);
-    Route::post('/produk/{id}', [ProdukController::class, 'update']);
-    Route::get('/kategori', [ProdukController::class, 'kategoris']);
+    Route::resource('todo', TodoController::class);
+    Route::post('/todo/{id}', [TodoController::class, 'update']);
 });
